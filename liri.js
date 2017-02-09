@@ -31,18 +31,22 @@ console.log("What command? " + action);
 switch (action){
   case "my-tweets":
   myTweets();
+  logAction();
   break;
 
   case "spotify-this-song":
   spotifyThisSong();
+  logAction();
   break;
 
   case "movie-this":
   movieThis();
+  logAction();
   break;
 
   case "do-what-it-says":
   doThis();
+  logAction();
   break;
 
 }
@@ -162,18 +166,6 @@ request(queryURL, function(error, response, body) {
 
 }
 
-// * Title of the movie.
-//     * Year the movie came out.
-//     * IMDB Rating of the movie.
-//     * Country where the movie was produced.
-//     * Language of the movie.
-//     * Plot of the movie.
-//     * Actors in the movie.
-//     * Rotten Tomatoes Rating.
-//     * Rotten Tomatoes URL.
-
-
-
 // * `do-what-it-says`
 function doThis(){
 
@@ -209,4 +201,22 @@ fs.readFile("random.txt", "utf8", function(error,data){
 
 });
 
+}
+
+function logAction (){
+
+  var logItem = "\nSearch String:" + action + "," + value;
+  console.log(logItem);
+
+  fs.appendFile("log.txt",logItem, function(err){
+
+    if (err) {
+    console.log(err);
+  }
+
+  else {
+    console.log("Content Added!");
+  }
+
+});
 }
